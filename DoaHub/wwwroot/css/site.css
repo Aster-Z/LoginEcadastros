@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+
 :root {
   --navy-900: #0D1B2A;
   --navy-800: #1B263B;
@@ -15,10 +19,16 @@
 * { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  background: var(--sand-100);
-  color: var(--ink);
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: var(--sand-100);
+    color: var(--ink);
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
 }
 
 .nav {
