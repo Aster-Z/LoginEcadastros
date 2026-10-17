@@ -1,0 +1,101 @@
+@model RegisterInstituicaoViewModel
+@{
+    ViewData["Title"] = "Cadastro de instituição";
+    string[] tipos = { "Hemocentro", "Hospital", "Banco de sangue", "ONG" };
+}
+
+<div class="pagehead">
+    <h1>Cadastrar instituição</h1>
+    <p class="sub">Hemocentros, hospitais, bancos de sangue e ONGs. O cadastro passa por validação antes de publicar campanhas.</p>
+</div>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="errors">
+        @foreach (var erro in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@erro.ErrorMessage</div>
+        }
+    </div>
+}
+
+<form asp-controller="Account" asp-action="RegistrarInstituicao" method="post">
+    <div class="field">
+        <label asp-for="NomeInstituicao"></label>
+        <input asp-for="NomeInstituicao" placeholder="Nome oficial" />
+        <span asp-validation-for="NomeInstituicao" class="field-error"></span>
+    </div>
+
+    <div class="row2">
+        <div class="field">
+            <label asp-for="Cnpj"></label>
+            <div class="inputic">
+                <svg aria-hidden="true"><use href="#i-idcard"/></svg>
+                <input asp-for="Cnpj" placeholder="00.000.000/0000-00" />
+            </div>
+            <span asp-validation-for="Cnpj" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Tipo"></label>
+            <select asp-for="Tipo">
+                @foreach (var tipo in tipos)
+                {
+                    <option value="@tipo" selected="@(Model.Tipo == tipo)">@tipo</option>
+                }
+            </select>
+            <span asp-validation-for="Tipo" class="field-error"></span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label asp-for="Endereco"></label>
+        <div class="inputic">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <input asp-for="Endereco" placeholder="Rua, número, bairro, cidade, estado" />
+        </div>
+        <span asp-validation-for="Endereco" class="field-error"></span>
+    </div>
+
+    <div class="row2">
+        <div class="field">
+            <label asp-for="TelefoneContato"></label>
+            <div class="inputic">
+                <svg aria-hidden="true"><use href="#i-phone"/></svg>
+                <input asp-for="TelefoneContato" placeholder="(31) 3000-0000" />
+            </div>
+            <span asp-validation-for="TelefoneContato" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="EmailContato"></label>
+            <div class="inputic">
+                <svg aria-hidden="true"><use href="#i-mail"/></svg>
+                <input asp-for="EmailContato" placeholder="contato@instituicao.org" />
+            </div>
+            <span asp-validation-for="EmailContato" class="field-error"></span>
+        </div>
+    </div>
+
+    <div class="row2">
+        <div class="field">
+            <label asp-for="Responsavel"></label>
+            <input asp-for="Responsavel" placeholder="Nome completo" />
+            <span asp-validation-for="Responsavel" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Cargo"></label>
+            <input asp-for="Cargo" placeholder="Coordenação" />
+            <span asp-validation-for="Cargo" class="field-error"></span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label asp-for="SenhaAcesso"></label>
+        <div class="inputic">
+            <svg aria-hidden="true"><use href="#i-lock"/></svg>
+            <input asp-for="SenhaAcesso" type="password" placeholder="Mínimo de 8 caracteres" />
+        </div>
+        <span asp-validation-for="SenhaAcesso" class="field-error"></span>
+    </div>
+
+    <button type="submit" class="btn-primary"><svg aria-hidden="true" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"><use href="#i-arrow"/></svg>Enviar cadastro para validação</button>
+</form>

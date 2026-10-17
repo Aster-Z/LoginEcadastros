@@ -1,270 +1,542 @@
 
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 
 :root {
-  --navy-900: #0D1B2A;
-  --navy-800: #1B263B;
-  --navy-600: #415A77;
-  --sand-100: #E0E1DD;
-  --red-800: #38040E;
-  --red-700: #640D14;
-  --red-600: #800E13;
-  --red-500: #AD2831;
-  --ink: #0D1B2A;
-  --mute: #5D6877;
-  --line: #CBD3DD;
+    --navy-900: #0D1B2A;
+    --navy-800: #1B263B;
+    --navy-600: #415A77;
+    --sand-100: #E0E1DD;
+    --red-800: #38040E;
+    --red-700: #640D14;
+    --red-600: #800E13;
+    --red-500: #AD2831;
+    --ink: #0D1B2A;
+    --mute: #5D6877;
+    --line: #CBD3DD;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     font-family: "Inter", sans-serif;
     background: var(--sand-100);
     color: var(--ink);
+    overflow: hidden;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Manrope", sans-serif;
+        font-weight: 700;
+    }
 }
 
-/* Títulos */
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Manrope", sans-serif;
-    font-weight: 700;
-}
+/* ---------- Cabeçalho ---------- */
 
 .nav {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  height: 56px;
-  padding: 0 24px;
-  background: var(--red-700);
-  color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    height: 56px;
+    padding: 0 24px;
+    background: var(--red-700);
+    color: #fff;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 700;
-  font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
 }
 
-.logo .mark {
-  width: 30px;
-  height: 30px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 3px;
-  object-fit: contain;
-}
+    .logo .mark {
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 3px;
+        object-fit: contain;
+    }
 
 .links {
-  display: flex;
-  gap: 6px;
-  flex: 1;
+    display: flex;
+    gap: 6px;
+    flex: 1;
 }
 
-.links a {
-  color: #E3B9BB;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 14px;
-}
+    .links a {
+        color: #E3B9BB;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+    }
 
-.links a:hover {
-  background: rgba(255, 255, 255, .12);
-  color: #fff;
-}
+        .links a:hover {
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+        }
 
 .userinfo {
-  font-size: 13px;
-  color: #E3B9BB;
+    font-size: 13px;
+    color: #E3B9BB;
 }
 
-.inline { display: inline; }
+.inline {
+    display: inline;
+}
 
 .btn-out {
-  font-size: 13px;
-  font-weight: 600;
-  color: #fff;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, .5);
-  border-radius: 6px;
-  padding: 6px 14px;
-  cursor: pointer;
-  text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.btn-out:hover {
-  background: rgba(255, 255, 255, .12);
-}
+    .btn-out .ic {
+        width: 13px;
+        height: 13px;
+    }
+
+    .btn-out:hover {
+        background: rgba(255, 255, 255, .12);
+    }
+
+/* ---------- Conteúdo geral ---------- */
 
 .content {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px 20px 60px;
-  min-height: calc(100vh - 56px - 48px);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+    min-height: calc(100vh - 56px - 48px);
 }
 
+    .content.full {
+        max-width: none;
+        padding: 0;
+        margin: 0;
+        min-height: calc(100vh - 56px);
+    }
+
 .footer {
-  text-align: center;
-  padding: 16px;
-  font-size: 12px;
-  color: var(--mute);
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: var(--mute);
 }
+
+/* ---------- Painel dividido: login / cadastro ---------- */
+
+.authwrap {
+    display: flex;
+    min-height: calc(100vh - 56px);
+}
+
+.brandpane {
+    flex: 0 0 42%;
+    min-width: 0;
+    background: linear-gradient(160deg, var(--navy-800) 0%, var(--navy-600) 100%);
+    color: #fff;
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .brandpane .chip {
+        width: 64px;
+        height: 64px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+
+        .brandpane .chip img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+    .brandpane h2 {
+        font-size: 28px;
+        margin: 0 0 8px;
+    }
+
+    .brandpane p {
+        color: #D8DFE8;
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .brandpane ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+        .brandpane ul li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: #E7ECF3;
+        }
+
+            .brandpane ul li svg {
+                width: 16px;
+                height: 16px;
+                flex: none;
+                color: #fff;
+            }
+
+.formpane {
+    flex: 1;
+    min-width: 0;
+    background: var(--sand-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+    .formpane .inner {
+        width: 100%;
+        max-width: 530px;
+    }
 
 /* ---------- Cartões e formulários ---------- */
 
 .card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 22px 24px;
-  max-width: 420px;
-  margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 24px;
+    max-width: 420px;
+    margin: 0 auto;
 }
 
-.card h1 {
-  font-size: 20px;
-  margin: 0 0 4px;
+    .card h1,
+    .formpane h1 {
+        font-size: 28px;
+        margin: 0 0 8px;
+    }
+
+    .card .sub,
+    .formpane .sub {
+        color: var(--mute);
+        font-size: 18px;
+        margin-bottom: 28px;
+    }
+
+.pagehead h1 {
+    font-size: 22px;
+    margin: 0 0 4px;
 }
 
-.card .sub {
-  color: var(--mute);
-  font-size: 13px;
-  margin-bottom: 18px;
+.pagehead .sub {
+    color: var(--mute);
+    font-size: 13px;
+    margin-bottom: 22px;
 }
 
-.field { margin-bottom: 14px; }
-
-.field label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 4px;
+.row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
-.field input,
-.field select {
-  width: 100%;
-  padding: 9px 11px;
-  border: 1.5px solid var(--line);
-  border-radius: 6px;
-  font-size: 14px;
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
-.field input:focus,
-.field select:focus {
-  outline: none;
-  border-color: var(--red-500);
+.bt-radio {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
 }
+
+.bt {
+    display: inline-flex;
+    min-width: 42px;
+    justify-content: center;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 11px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #3B4656;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.bt-radio:checked + .bt {
+    background: var(--red-500);
+    border-color: var(--red-500);
+    color: #fff;
+}
+
+.bt-radio:focus-visible + .bt {
+    outline: 2px solid var(--navy-600);
+    outline-offset: 1px;
+}
+
+.field {
+    margin-bottom: 14px;
+}
+
+    .field label {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .field input:not([type="checkbox"]):not([type="radio"]),
+    .field select {
+        width: 100%;
+        padding: 12px;
+        border: 1.5px solid var(--line);
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+    .field input[type="checkbox"],
+    .field input[type="radio"] {
+        width: auto;
+        padding: 0;
+        accent-color: var(--red-500);
+    }
+
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+            border-color: var(--red-500);
+        }
+
+
+/* Campos com ícones */
+.inputic {
+    position: relative;
+}
+
+.field .inputic input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 12px 12px 38px;
+}
+
+/* Ícones dentro dos campos */
+.inputic svg {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    color: #8EA0B8;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
 
 .field .check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 0;
 }
 
-.field .check input { width: auto; }
+    .field .check input[type="checkbox"] {
+        width: auto;
+        padding: 0;
+        margin: 0;
+        accent-color: var(--red-500);
+        flex-shrink: 0;
+    }
 
 .errors {
-  background: #FBEAEA;
-  border: 1px solid #E3B4B8;
-  color: var(--red-600);
-  border-radius: 6px;
-  padding: 10px 12px;
-  font-size: 13px;
-  margin-bottom: 14px;
+    background: #FBEAEA;
+    border: 1px solid #E3B4B8;
+    color: var(--red-600);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-bottom: 14px;
 }
 
 .field-error {
-  color: var(--red-600);
-  font-size: 12px;
-  margin-top: 3px;
-  display: block;
+    color: var(--red-600);
+    font-size: 12px;
+    margin-top: 3px;
+    display: block;
 }
 
 .btn-primary {
-  width: 100%;
-  background: var(--red-500);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 11px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
+    width: 100%;
+    background: var(--red-500);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
 }
 
-.btn-primary:hover { background: var(--red-600); }
+    .btn-primary:hover {
+        background: var(--red-600);
+    }
 
 .form-foot {
-  text-align: center;
-  margin-top: 14px;
-  font-size: 13px;
-  color: var(--mute);
+    text-align: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--mute);
 }
 
-.form-foot a {
-  color: var(--navy-800);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-/* ---------- Home pública ---------- */
-
-.hero {
-  text-align: center;
-  padding: 40px 0 20px;
-}
-
-.hero h1 { font-size: 28px; margin-bottom: 8px; }
-.hero p { color: var(--mute); max-width: 520px; margin: 0 auto 24px; }
-
-.hero .actions {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
+    .form-foot a {
+        color: var(--navy-800);
+        font-weight: 600;
+        text-decoration: underline;
+    }
 
 .btn-link {
-  display: inline-block;
-  padding: 11px 22px;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
+    display: inline-block;
+    padding: 14px 22px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
 }
 
-.btn-link.p { background: var(--red-500); color: #fff; }
-.btn-link.p:hover { background: var(--red-600); }
-.btn-link.g { border: 1.5px solid var(--navy-800); color: var(--navy-800); }
-.btn-link.g:hover { background: var(--navy-800); color: #fff; }
+    .btn-link.p {
+        background: var(--red-500);
+        color: #fff;
+    }
+
+        .btn-link.p:hover {
+            background: var(--red-600);
+        }
+
+    .btn-link.g {
+        border: 1.5px solid var(--navy-800);
+        color: var(--navy-800);
+    }
+
+        .btn-link.g:hover {
+            background: var(--navy-800);
+            color: #fff;
+        }
 
 /* ---------- Painéis internos ---------- */
 
 .banner {
-  background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-600) 100%);
-  color: #fff;
-  border-radius: 10px;
-  padding: 18px 20px;
-  margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-600) 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
 }
 
-.banner h1 { margin: 0 0 4px; font-size: 20px; }
-.banner p { margin: 0; color: #C7D3E3; font-size: 13px; }
+    .banner h1 {
+        margin: 0 0 4px;
+        font-size: 20px;
+    }
+
+    .banner p {
+        margin: 0;
+        color: #C7D3E3;
+        font-size: 13px;
+    }
 
 .placeholder {
-  border: 1.5px dashed var(--line);
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  color: var(--mute);
-  font-size: 13px;
+    border: 1.5px dashed var(--line);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    color: var(--mute);
+    font-size: 13px;
+}
+
+/* ---------- Responsividade ---------- */
+
+@media (max-width: 700px) {
+    .authwrap {
+        flex-direction: column;
+    }
+
+    .brandpane {
+        flex: none;
+        padding: 32px 24px;
+        gap: 24px;
+    }
+
+        .brandpane ul {
+            display: none;
+        }
+
+    .formpane {
+        padding: 32px 24px;
+    }
+
+    .row2 {
+        grid-template-columns: 1fr;
+    }
+
+    .nav {
+        gap: 10px;
+        padding: 0 12px;
+    }
+
+    .links {
+        gap: 2px;
+    }
+
+        .links a {
+            padding: 6px;
+            font-size: 12px;
+        }
+
+    .userinfo {
+        display: none;
+    }
+
+
+}
+
+.field .inputic > input {
+    padding-left: 50px !important;
+    text-indent: 0 !important;
 }

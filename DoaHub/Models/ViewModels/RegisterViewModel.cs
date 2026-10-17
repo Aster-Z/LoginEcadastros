@@ -24,8 +24,6 @@ namespace DoaHub.Models.ViewModels
         [Compare(nameof(Senha), ErrorMessage = "As senhas não coincidem.")]
         public string ConfirmarSenha { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Selecione o tipo de perfil.")]
-        [Display(Name = "Tipo de perfil")]
-        public string TipoPerfil { get; set; } = string.Empty;
+    
     }
 }

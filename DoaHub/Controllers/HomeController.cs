@@ -6,7 +6,7 @@ namespace DoaHub.Controllers
     public class HomeController : Controller
     {
         // Quem já está logado é mandado direto para o painel do seu perfil.
-        // Quem não está logado vê a home pública, com os botões de Entrar/Criar conta.
+        // Quem não está logado cai direto na tela de login — ela é a página inicial.
         public IActionResult Index()
         {
             if (User.Identity?.IsAuthenticated == true)
@@ -18,7 +18,7 @@ namespace DoaHub.Controllers
                     return RedirectToAction("Index", "Instituicao");
             }
 
-            return View();
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult Error()

@@ -1,0 +1,98 @@
+@model RegisterDoadorViewModel
+@{
+    ViewData["Title"] = "Cadastro de doador";
+    string[] tiposSanguineos = { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+    string[] estados = { "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO" };
+}
+
+<div class="pagehead">
+    <h1>Criar conta de doador</h1>
+    <p class="sub">Com o tipo sanguíneo e a cidade, avisamos você quando uma campanha precisar do seu sangue.</p>
+</div>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="errors">
+        @foreach (var erro in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@erro.ErrorMessage</div>
+        }
+    </div>
+}
+
+<form asp-controller="Account" asp-action="RegistrarDoador" method="post">
+    <div class="field">
+        <label asp-for="NomeCompleto"></label>
+        <input asp-for="NomeCompleto" placeholder="Nome e sobrenome" />
+        <span asp-validation-for="NomeCompleto" class="field-error"></span>
+    </div>
+
+    <div class="row2">
+        <div class="field">
+            <label asp-for="Email"></label>
+            <div class="inputic">
+                <svg aria-hidden="true"><use href="#i-mail"/></svg>
+                <input asp-for="Email" placeholder="nome@email.com" />
+            </div>
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Telefone"></label>
+            <div class="inputic">
+                <svg aria-hidden="true"><use href="#i-phone"/></svg>
+                <input asp-for="Telefone" placeholder="(31) 90000-0000" />
+            </div>
+            <span asp-validation-for="Telefone" class="field-error"></span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label asp-for="TipoSanguineo"></label>
+        <div class="chips">
+            @foreach (var tipo in tiposSanguineos)
+            {
+                var id = "ts-" + tipo.Replace("+", "p").Replace("-", "m");
+                <input type="radio" id="@id" name="TipoSanguineo" value="@tipo" class="bt-radio" checked="@(Model.TipoSanguineo == tipo)" />
+                <label for="@id" class="bt">@tipo</label>
+            }
+        </div>
+        <span asp-validation-for="TipoSanguineo" class="field-error"></span>
+    </div>
+
+    <div class="row2">
+        <div class="field">
+            <label asp-for="Cidade"></label>
+            <div class="inputic">
+                <svg aria-hidden="true"><use href="#i-pin"/></svg>
+                <input asp-for="Cidade" placeholder="Belo Horizonte" />
+            </div>
+            <span asp-validation-for="Cidade" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Estado"></label>
+            <select asp-for="Estado">
+                @foreach (var uf in estados)
+                {
+                    <option value="@uf" selected="@(Model.Estado == uf)">@uf</option>
+                }
+            </select>
+            <span asp-validation-for="Estado" class="field-error"></span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label asp-for="Senha"></label>
+        <div class="inputic">
+            <svg aria-hidden="true"><use href="#i-lock"/></svg>
+            <input asp-for="Senha" type="password" placeholder="Mínimo de 8 caracteres" />
+        </div>
+        <span asp-validation-for="Senha" class="field-error"></span>
+    </div>
+
+    <div class="field check">
+        <input asp-for="QuerAvisos" />
+        <label asp-for="QuerAvisos"></label>
+    </div>
+
+    <button type="submit" class="btn-primary"><svg aria-hidden="true" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"><use href="#i-arrow"/></svg>Criar conta</button>
+</form>

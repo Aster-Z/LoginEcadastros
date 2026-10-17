@@ -1,41 +1,65 @@
 @model LoginViewModel
 @{
     ViewData["Title"] = "Entrar";
+    ViewData["FullBleed"] = true;
 }
 
-<div class="card">
-    <h1>Entrar no DoaHub</h1>
-    <p class="sub">Doadores e instituições usam o mesmo acesso.</p>
+<div class="authwrap">
+    <div class="brandpane">
+        <div>
+            <span class="chip"><img src="~/images/logo.png" alt="" /></span>
+            <h2>Cada doação encontra quem precisa</h2>
+            <p>O DoaHub conecta você a hemocentros, hospitais e bancos de sangue com estoque baixo perto de você.</p>
+        </div>
+        <ul>
+            <li><svg aria-hidden="true"><use href="#i-droplet"/></svg>Alertas por tipo sanguíneo</li>
+            <li><svg aria-hidden="true"><use href="#i-pin"/></svg>Campanhas perto de você</li>
+            <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Instituições validadas</li>
+        </ul>
+    </div>
 
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <div class="errors">
-            @foreach (var erro in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+    <div class="formpane">
+        <div class="inner">
+            <h1>Entrar no DoaHub</h1>
+            <p class="sub">Doadores, instituições e administradores usam o mesmo acesso.</p>
+
+            @if (!ViewData.ModelState.IsValid)
             {
-                <div>@erro.ErrorMessage</div>
+                <div class="errors">
+                    @foreach (var erro in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div>@erro.ErrorMessage</div>
+                    }
+                </div>
             }
-        </div>
-    }
 
-    <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-        <div class="field">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" />
-            <span asp-validation-for="Email" class="field-error"></span>
-        </div>
-        <div class="field">
-            <label asp-for="Senha"></label>
-            <input asp-for="Senha" type="password" />
-            <span asp-validation-for="Senha" class="field-error"></span>
-        </div>
-        <div class="field check">
-            <input asp-for="LembrarMe" />
-            <label asp-for="LembrarMe"></label>
-        </div>
-        <button type="submit" class="btn-primary">Entrar</button>
-    </form>
+            <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div class="field">
+                    <label asp-for="Email"></label>
+                    <div class="inputic">
+                        <svg aria-hidden="true"><use href="#i-mail"/></svg>
+                        <input asp-for="Email" />
+                    </div>
+                    <span asp-validation-for="Email" class="field-error"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Senha"></label>
+                    <div class="inputic">
+                        <svg aria-hidden="true"><use href="#i-lock"/></svg>
+                        <input asp-for="Senha" type="password" />
+                    </div>
+                    <span asp-validation-for="Senha" class="field-error"></span>
+                </div>
+                <button type="submit" class="btn-primary"><svg aria-hidden="true" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px"><use href="#i-arrow"/></svg>Entrar</button>
+            </form>
 
-    <div class="form-foot">
-        Ainda não tem conta? <a asp-controller="Account" asp-action="Register">Criar conta</a>
+            <hr style="border:0;border-top:1px solid var(--line);margin:18px 0" />
+
+            <div class="form-foot" style="margin-top:0">Ainda não tem conta?</div>
+            <div class="row2" style="margin-top:10px">
+                <a class="btn-link g" style="text-align:center" asp-controller="Account" asp-action="RegistrarDoador">Sou doador</a>
+                <a class="btn-link g" style="text-align:center" asp-controller="Account" asp-action="RegistrarInstituicao">Sou instituição</a>
+            </div>
+        </div>
     </div>
 </div>
