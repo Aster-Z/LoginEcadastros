@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DoaHub</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="nav">
+        <a class="logo" asp-controller="Home" asp-action="Index">
+            <img src="~/images/logo.png" alt="Logo DoaHub" class="mark" />
+            <span>DoaHub</span>
+        </a>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <nav class="links">
+                @if (User.IsInRole(Roles.Doador))
+                {
+                    <a asp-controller="Doador" asp-action="Index">Painel</a>
+                }
+                @if (User.IsInRole(Roles.Instituicao))
+                {
+                    <a asp-controller="Instituicao" asp-action="Index">Painel</a>
+                }
+            </nav>
+            <span class="userinfo">Olá, @User.Identity.Name</span>
+            <form asp-controller="Account" asp-action="Logout" method="post" class="inline">
+                <button type="submit" class="btn-out">Sair</button>
+            </form>
+        }
+        else
+        {
+            <nav class="links"></nav>
+            <a class="btn-out" asp-controller="Account" asp-action="Login">Entrar</a>
+        }
+    </header>
+
+    <main class="content">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <span>DoaHub &copy; @DateTime.Now.Year</span>
+    </footer>
+</body>
+</html>

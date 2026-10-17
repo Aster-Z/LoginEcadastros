@@ -1,0 +1,56 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Criar conta";
+}
+
+<div class="card">
+    <h1>Criar conta no DoaHub</h1>
+    <p class="sub">Escolha o tipo de perfil para liberar as telas corretas.</p>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="errors">
+            @foreach (var erro in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@erro.ErrorMessage</div>
+            }
+        </div>
+    }
+
+    <form asp-controller="Account" asp-action="Register" method="post">
+        <div class="field">
+            <label asp-for="NomeCompleto"></label>
+            <input asp-for="NomeCompleto" />
+            <span asp-validation-for="NomeCompleto" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Senha"></label>
+            <input asp-for="Senha" type="password" />
+            <span asp-validation-for="Senha" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="ConfirmarSenha"></label>
+            <input asp-for="ConfirmarSenha" type="password" />
+            <span asp-validation-for="ConfirmarSenha" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="TipoPerfil"></label>
+            <select asp-for="TipoPerfil">
+                <option value="">Selecione...</option>
+                <option value="@Roles.Doador">Sou doador</option>
+                <option value="@Roles.Instituicao">Sou instituição coletora</option>
+            </select>
+            <span asp-validation-for="TipoPerfil" class="field-error"></span>
+        </div>
+        <button type="submit" class="btn-primary">Criar conta</button>
+    </form>
+
+    <div class="form-foot">
+        Já tem conta? <a asp-controller="Account" asp-action="Login">Entrar</a>
+    </div>
+</div>

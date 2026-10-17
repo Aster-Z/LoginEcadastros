@@ -1,0 +1,41 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Entrar";
+}
+
+<div class="card">
+    <h1>Entrar no DoaHub</h1>
+    <p class="sub">Doadores e instituições usam o mesmo acesso.</p>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="errors">
+            @foreach (var erro in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@erro.ErrorMessage</div>
+            }
+        </div>
+    }
+
+    <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <div class="field">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Senha"></label>
+            <input asp-for="Senha" type="password" />
+            <span asp-validation-for="Senha" class="field-error"></span>
+        </div>
+        <div class="field check">
+            <input asp-for="LembrarMe" />
+            <label asp-for="LembrarMe"></label>
+        </div>
+        <button type="submit" class="btn-primary">Entrar</button>
+    </form>
+
+    <div class="form-foot">
+        Ainda não tem conta? <a asp-controller="Account" asp-action="Register">Criar conta</a>
+    </div>
+</div>
